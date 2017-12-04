@@ -1,0 +1,132 @@
+version: '3'
+
+services:
+  sabnzbd:
+    image: sabnzbd/sabnzbd
+    networks:
+      - traefik-net
+      - default
+    environment:
+      - SABNZBD_UID=0
+      - SABNZBD_GID=0
+    volumes:
+      - snzb_datadir:/datadir
+      - snzb_media:/media
+    deploy:
+      labels:
+        - "traefik.port=8080"
+        - "traefik.frontend.rule=Host:downloads.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  sonarr:
+    image: linuxserver/sonarr
+    networks:
+      - traefik-net
+      - default
+    environment:
+      - PUID=0
+      - GUID=0
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - sonarr_config:/config
+      - sonarr_tv:/tv
+      - media:/downloads
+    deploy:
+      labels:
+        - "traefik.port=8989"
+        - "traefik.frontend.rule=Host:tv.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  plex:
+    image: plexinc/pms-docker
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    environment:
+      - TZ=America/Los_Angeles
+      - PLEX_CLAIM=claim-5x2epiEBZFtVkDNz8mDh
+      - ADVERTISE_IP=http://192.168.0.212:32400
+      - PLEX_UID=0
+      - PLEX_GID=0
+    volumes:
+      - plex_config:/config
+      - sonarr_tv:/data/tvshows
+      - radarr_movies:/data/movies
+
+  radarr:
+    image: linuxserver/radarr
+    networks:
+      - traefik-net
+      - default
+    environment:
+      - GUID=0
+      - PUID=0
+    volumes:
+      - radarr_movies:/movies
+      - radarr_config:/config
+      - media:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      labels:
+        - "traefik.port=7878"
+        - "traefik.frontend.rule=Host:movies.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+volumes:
+  snzb_datadir:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+  sonarr_config:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+  radarr_config:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+  plex_config:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+  snzb_media:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=freenas.bluehairfreak.com,rw
+      device: ":/mnt/media/media/sabnzbd"
+  media:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=freenas.bluehairfreak.com,rw
+      device: ":/mnt/media/media"
+  sonarr_tv:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=freenas.bluehairfreak.com,rw
+      device: ":/mnt/media/media/tv"
+  radarr_movies:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=freenas.bluehairfreak.com,rw
+      device: ":/mnt/media/media/movies"
+
+networks:
+  traefik-net:
+    external: true
+  hostnet:
+    external:
+      name: host

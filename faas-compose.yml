@@ -1,0 +1,49 @@
+version: "3.2"
+services:
+  gateway:
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    image: functions/gateway:0.6.9
+    networks:
+      - functions
+      - traefik-net
+    environment:
+      read_timeout: 10    # set both here, and on your functions
+      write_timeout: 10   # set both here, and on your functions
+      dnsrr: "true"  # Temporarily use dnsrr in place of VIP while issue persists on PWD
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 20
+        window: 380s
+      placement:
+        constraints:
+          - 'node.role == manager'
+          - 'node.platform.os == linux'
+      labels:
+        - "traefik.frontend.rule=PathPrefix:/ui,/system,/function"
+        - "traefik.port=8080"
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:functions.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+  nodeinfo:
+    image: functions/nodeinfo:latest
+    labels:
+      function: "true"
+    depends_on:
+      - gateway
+    networks:
+      - functions
+    environment:
+      no_proxy: "gateway"
+      https_proxy: $https_proxy
+
+networks:
+  traefik-net:
+    external: true
+  functions:
+    driver: overlay
