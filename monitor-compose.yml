@@ -1,12 +1,20 @@
-version: '3'
+version: '3.4'
 
 services:
   influx:
     image: influxdb
+    networks:
+      - traefik-net
+      - metrics-net
     volumes:
       - influx:/var/lib/influxdb
     deploy:
       replicas: 1
+      labels:
+        - "traefik.port=8086"
+        - "traefik.frontend.rule=Host:influx.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
 
   grafana:
     image: grafana/grafana
@@ -16,9 +24,10 @@ services:
       - grafana:/var/lib/grafana
     networks:
       - traefik-net
-      - default
+      - metrics-net
     depends_on:
       - influx
+    dns: 127.0.0.11
     deploy:
       replicas: 1
       labels:
@@ -30,6 +39,8 @@ services:
   cadvisor:
     image: google/cadvisor
     hostname: '{{.Node.ID}}'
+    networks:
+      - metrics-net
     command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
     volumes:
       - /:/rootfs:ro
@@ -55,4 +66,8 @@ volumes:
 
 networks:
   traefik-net:
+    external: true
+  logs-net:
+    external: true
+  metrics-net:
     external: true
