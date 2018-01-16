@@ -15,7 +15,7 @@ if [ ! -f ca.key ]; then
 fi
 
 if [ ! -f ca.crt ]; then
-  openssl req -new -x509 -key ca.key -out ca.crt
+  openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
 fi
 
 if [ ! -f lab.csr ]; then

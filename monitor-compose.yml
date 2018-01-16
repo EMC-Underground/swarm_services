@@ -32,7 +32,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=3000"
-        - "traefik.frontend.rule=Host:grafana.bellevuelab.isus.emc.com"
+        - "traefik.frontend.rule=Host:metrics.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 

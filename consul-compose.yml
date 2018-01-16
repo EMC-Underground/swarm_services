@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  consul:
+    image: progrium/consul
+    networks:
+      - consul-net
+      - traefik-net
+    command: -server -bootstrap-expect 3 -ui-dir /ui
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.port=8500"
+        - "traefik.frontend.rule=Host:consul.bellevuelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  consul-nodes:
+    image: progrium/consul
+    networks:
+      - consul-net
+    environment:
+      - 'CONSUL_LOCAL_CONFIG={"leave_on_interrupt": true}'
+    command: -server -join consul
+    deploy:
+      replicas: 2
+      endpoint_mode: dnsrr
+
+networks:
+  traefik-net:
+    external: true
+  consul-net:
+    external: true
