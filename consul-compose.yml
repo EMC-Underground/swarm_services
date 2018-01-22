@@ -26,6 +26,16 @@ services:
       replicas: 2
       endpoint_mode: dnsrr
 
+  registrator:
+    image: gliderlabs/registrator
+    networks:
+      - consul-net
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    command: consul://consul:8500
+    deploy:
+      mode: global
+
 networks:
   traefik-net:
     external: true

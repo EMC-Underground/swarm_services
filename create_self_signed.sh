@@ -18,10 +18,10 @@ if [ ! -f ca.crt ]; then
   openssl req -new -x509 -days 3650 -key ca.key -out ca.crt
 fi
 
-if [ ! -f lab.csr ]; then
-  openssl req -new -out lab.csr -config openssl_config.cnf
+if [ ! -f norcal.csr ]; then
+  openssl req -new -out norcal.csr -config openssl_config.cnf
 fi
 
-if [ ! -f lab.crt ]; then
-  openssl ca -config ca.cnf -out lab.crt -extfile lab.extensions.cnf -in lab.csr
+if [ ! -f norcal.crt ]; then
+  openssl ca -config ca.cnf -out norcal.crt -extfile norcal.extensions.cnf -in norcal.csr
 fi
