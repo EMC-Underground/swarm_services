@@ -1,0 +1,74 @@
+version: '3.4'
+
+services:
+  influx:
+    image: influxdb
+    networks:
+      - traefik-net
+      - metrics-net
+    volumes:
+      - influx:/var/lib/influxdb
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.port=8086"
+        - "traefik.frontend.rule=Host:influx.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=https://grafana.bluehairfreak.com
+    volumes:
+      - grafana:/var/lib/grafana
+    networks:
+      - traefik-net
+      - metrics-net
+    depends_on:
+      - influx
+    dns: 127.0.0.11
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.port=3000"
+        - "traefik.frontend.rule=Host:grafana.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  cadvisor:
+    image: google/cadvisor
+    hostname: '{{.Node.ID}}'
+    networks:
+      - metrics-net
+      - logs-net
+    command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    depends_on:
+      - influx
+    dns: 127.0.0.11
+    deploy:
+      mode: global
+
+volumes:
+  influx:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 100
+  grafana:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+
+networks:
+  traefik-net:
+    external: true
+  logs-net:
+    external: true
+  metrics-net:
+    external: true
