@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+  drone-server:
+    image: drone/drone:0.8
+    networks:
+      - traefik-net
+      - default
+    volumes:
+      - drone:/var/lib/drone/
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_HOST=https://cd.bluehairfreak.com
+      - DRONE_GITHUB=true
+      - DRONE_GITHUB_CLIENT=a8b526274b2562021c70
+      - DRONE_GITHUB_SECRET=5e671960ef664a1f1b1ea7826286d9cefa05a992
+      - DRONE_SECRET=61C6082F-922B-4CCD-A1FA-701A49F1126D
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.frontend.rule=Host:cd.bluehairfreak.com"
+        - "traefik.port=8000"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  drone-agent:
+    image: drone/agent:0.8
+    dns: 127.0.0.11
+    command: agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=drone-server:9000
+      - DRONE_SECRET=61C6082F-922B-4CCD-A1FA-701A49F1126D
+
+volumes:
+  drone:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+
+networks:
+  traefik-net:
+    external: true

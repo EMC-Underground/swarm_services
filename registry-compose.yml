@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   server:
@@ -12,6 +12,21 @@ services:
       replicas: 1
       labels:
         - "traefik.port=5000"
+        - "traefik.frontend.rule=Host:registry.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+  frontend:
+    image: hyper/docker-registry-web
+    networks:
+      - default
+      - traefik-net
+    configs:
+      - source: registry_conf
+        target: /conf/config.yml
+        mode: 444
+    deploy:
+      labels:
+        - "traefik.port=8080"
         - "traefik.frontend.rule=Host:hub.bluehairfreak.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
@@ -21,6 +36,10 @@ volumes:
     driver: rexray/scaleio
     driver_opts:
       size: 500
+
+configs:
+  registry_conf:
+    file: ./registry-conf.conf
 
 networks:
   traefik-net:

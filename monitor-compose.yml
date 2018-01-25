@@ -41,6 +41,7 @@ services:
     hostname: '{{.Node.ID}}'
     networks:
       - metrics-net
+      - logs-net
     command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
     volumes:
       - /:/rootfs:ro
