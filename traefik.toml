@@ -15,7 +15,7 @@ defaultEntryPoints = ["http", "https"]
 address = ":8080"
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "bluehairfreak.com"
+domain = "bellevuelab.isus.emc.com"
 watch = true
 swarmmode = true
 exposedbydefault = false

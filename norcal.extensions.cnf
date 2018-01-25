@@ -1,0 +1,24 @@
+basicConstraints=CA:FALSE
+subjectAltName=@my_subject_alt_names
+subjectKeyIdentifier = hash
+
+[ my_subject_alt_names ]
+DNS.1 = *.se.lab.emc.com
+DNS.2 = se.lab.emc.com
+DNS.3 = *.paclabs.se.lab.emc.com
+DNS.4 = paclabs.se.lab.emc.com
+DNS.5 = *.norcal.se.lab.emc.com
+DNS.6 = norcal.se.lab.emc.com
+DNS.7 = *.pcf.paclabs.se.lab.emc.com
+DNS.8 = *.apps.paclabs.se.lab.emc.com
+DNS.9 = *.bellevuelab.isus.emc.com
+DNS.10= pcf.paclabs.se.lab.emc.com
+DNS.11= apps.paclabs.se.lab.emc.com
+DNS.12= *.login.pcf.paclabs.se.lab.emc.com
+DNS.13= *.uaa.pcf.paclabs.se.lab.emc.com
+DNS.14= *.pcf.norcal.se.lab.emc.com
+DNS.15= *.apps.norcal.se.lab.emc.com
+DNS.16= pcf.norcal.se.lab.emc.com
+DNS.17= apps.norcal.se.lab.emc.com
+DNS.18= *.login.pcf.norcal.se.lab.emc.com
+DNS.19= *.uaa.pcf.norcal.se.lab.emc.com

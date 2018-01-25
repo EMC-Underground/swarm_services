@@ -1,0 +1,130 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, ST=Washington, L=Seattle, O=DellEMC, CN=DellEMC SE Lab/emailAddress=craig.j.smith@dell.com
+        Validity
+            Not Before: Jan 17 16:13:17 2018 GMT
+            Not After : Jan 15 16:13:17 2028 GMT
+        Subject: C=US, ST=Washington, O=DellEMC, CN=se.lab.emc.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (4096 bit)
+                Modulus (4096 bit):
+                    00:aa:2c:eb:f5:91:0b:54:55:5e:7b:dd:ea:1c:34:
+                    b8:1a:1a:8b:cb:a3:95:52:08:c0:1a:aa:15:a6:c7:
+                    cb:07:01:5a:0b:80:bc:e6:d6:03:ab:d9:0d:94:09:
+                    5d:8c:d7:1d:08:c4:ac:da:3b:ad:ab:73:6e:e3:8b:
+                    f5:b7:27:d4:52:e4:35:ef:67:46:3b:4b:ff:32:de:
+                    43:f1:4a:0e:71:30:2e:8f:ef:1b:bb:6d:f4:1a:50:
+                    1f:64:6e:0b:8d:06:fb:21:1a:16:1a:85:53:39:0a:
+                    e3:c3:73:56:11:c9:c3:96:c6:36:2d:aa:33:7d:74:
+                    ca:0d:05:4b:13:bc:9b:fb:c5:2c:89:3c:69:8f:c6:
+                    d6:ef:3e:16:0f:1e:30:c0:ff:b1:23:2f:82:e9:74:
+                    2d:40:91:db:ba:48:7e:e8:41:71:57:97:26:e1:a6:
+                    db:13:9c:13:44:d7:a3:67:f4:1f:8b:89:e9:83:a7:
+                    4f:23:47:48:d6:f8:af:05:84:be:f0:05:08:0b:8c:
+                    3d:f8:bc:54:1b:47:6a:30:55:a2:3c:0e:da:53:87:
+                    94:fc:10:66:4e:b5:4f:a6:c8:ea:a0:48:eb:c1:29:
+                    cb:d1:85:08:a1:94:8b:7c:b0:a7:9f:c2:f6:4e:bc:
+                    3b:35:4e:48:f9:61:1c:fa:25:44:0d:9e:48:8b:cb:
+                    3c:5c:9c:9c:72:ee:93:96:18:94:6e:02:99:bf:e4:
+                    bb:d5:12:c1:d9:38:e0:aa:90:93:d3:f3:fb:cf:6a:
+                    58:40:d7:eb:e8:36:81:57:9e:5c:e3:f2:f9:de:c3:
+                    51:f0:2f:3a:79:2d:ca:d1:77:eb:6f:d5:28:d1:c5:
+                    23:c3:09:02:6e:aa:75:77:5c:d5:ef:c8:75:81:54:
+                    79:b9:62:ae:3d:b6:21:db:cd:33:ad:cd:d8:df:3b:
+                    68:cc:eb:94:13:39:26:bb:e2:75:2e:89:e2:27:ff:
+                    26:3c:78:78:05:e8:a5:77:26:25:86:e0:cc:bb:ef:
+                    c2:5d:fc:1c:d3:fc:bf:d2:a3:93:90:df:f2:83:b7:
+                    88:4b:c8:11:79:91:71:d5:b4:e6:57:df:6d:8d:02:
+                    a8:ad:08:bd:21:40:ef:3e:78:3c:64:05:be:6c:cc:
+                    da:da:1d:fd:36:55:0d:38:71:d3:dd:1d:ef:af:35:
+                    26:90:27:e2:ca:c3:e0:aa:42:4f:72:aa:f7:b6:f7:
+                    4f:7d:1b:f3:d8:4d:c3:a7:45:61:1e:08:fb:2c:e0:
+                    f3:f3:42:00:89:f2:f3:2e:1d:e8:05:61:3c:2c:0b:
+                    08:10:a4:67:f1:ac:53:1a:09:04:32:d6:98:b0:5a:
+                    c1:c7:e7:0e:67:08:20:e9:2b:c2:e1:2c:39:de:8b:
+                    8f:86:5b
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Alternative Name: 
+                DNS:*.se.lab.emc.com, DNS:se.lab.emc.com, DNS:*.paclabs.se.lab.emc.com, DNS:paclabs.se.lab.emc.com, DNS:*.norcal.se.lab.emc.com, DNS:norcal.se.lab.emc.com, DNS:*.pcf.paclabs.se.lab.emc.com, DNS:*.apps.paclabs.se.lab.emc.com, DNS:*.bellevuelab.isus.emc.com, DNS:pcf.paclabs.se.lab.emc.com, DNS:apps.paclabs.se.lab.emc.com, DNS:*.login.pcf.paclabs.se.lab.emc.com, DNS:*.uaa.pcf.paclabs.se.lab.emc.com, DNS:*.pcf.norcal.se.lab.emc.com, DNS:*.apps.norcal.se.lab.emc.com, DNS:pcf.norcal.se.lab.emc.com, DNS:apps.norcal.se.lab.emc.com, DNS:*.login.pcf.norcal.se.lab.emc.com, DNS:*.uaa.pcf.norcal.se.lab.emc.com
+            X509v3 Subject Key Identifier: 
+                B5:B3:E0:B0:D9:AC:D8:AD:A3:61:8B:1D:76:82:5E:6B:95:62:38:81
+    Signature Algorithm: sha256WithRSAEncryption
+        29:0a:e9:d2:24:97:e5:bd:0a:1b:ca:36:17:e1:39:8e:9f:00:
+        ed:5a:48:13:cb:a8:0c:85:b3:26:b2:4b:22:09:78:04:9d:09:
+        0d:e0:ab:30:e5:95:68:35:96:15:b3:c2:6b:31:2c:37:5e:e3:
+        07:6e:74:dc:ab:42:67:1b:e0:0d:72:28:a0:a2:c7:fc:e7:10:
+        8e:29:b2:18:a1:c7:a1:0d:4a:2c:24:af:fb:46:cd:56:98:f5:
+        44:a4:51:9b:19:91:d7:70:20:8e:67:60:a7:dc:ef:53:72:cb:
+        55:e5:7b:5d:d6:fa:1d:0b:01:2b:0a:48:7f:9d:d1:a2:6e:4b:
+        1c:db:32:62:dc:e2:46:c7:44:5f:03:7f:fe:9a:11:f4:ae:8a:
+        65:75:f6:db:9e:c9:ee:b5:70:cf:b2:98:f2:6c:3b:91:57:9b:
+        4a:4c:0e:a4:1a:c5:04:67:fa:bd:7b:78:4c:52:e8:9d:ca:9f:
+        28:b8:3a:25:be:88:0f:e4:f0:36:1f:9b:cc:35:dc:18:e2:7b:
+        ce:c2:68:01:63:72:ea:80:fe:f7:a5:01:d3:57:76:17:75:d5:
+        ca:b7:b2:87:39:a0:cd:ea:97:6d:97:47:34:84:3c:85:f0:95:
+        d7:2c:fd:05:0a:82:29:dc:c5:03:16:c0:38:08:2c:7d:c9:01:
+        62:e4:1a:53:79:50:85:0c:ae:97:9e:1a:c8:50:e1:b0:7b:a3:
+        33:15:ee:29:15:a7:70:8b:5f:61:38:0a:2f:56:cd:44:b9:c0:
+        19:b5:97:cc:1a:6d:c7:cf:e5:af:91:1a:1b:ff:ea:6b:72:1c:
+        de:15:4e:0e:a3:96:07:40:fc:cc:7e:77:5b:a6:4c:86:50:59:
+        5e:f3:b1:08:d4:83:a3:42:32:88:c7:4a:60:d9:00:44:84:be:
+        2a:2f:5a:41:bc:69:ed:e9:42:6a:8f:1a:35:f1:b1:bd:78:fb:
+        12:bf:0c:ef:d3:83:97:03:4c:8b:72:4e:92:3c:34:c0:57:37:
+        36:85:7d:e3:64:1a:61:dd:b5:71:10:b2:5b:a7:69:eb:4d:25:
+        fe:14:0f:1a:b3:22:0a:fa:24:85:13:39:6b:08:f5:5e:9e:7e:
+        f4:b1:82:74:4d:e8:13:2b:50:22:3b:94:33:fd:76:d6:ac:fa:
+        8a:2d:a3:45:aa:ec:55:7d:1b:09:1d:04:46:b4:37:9e:84:c4:
+        3f:7d:46:6f:ec:77:3b:e5:84:54:c8:db:1d:be:f7:6d:28:3a:
+        be:f6:c8:9c:28:8b:d5:05:a4:5a:95:1a:65:a8:17:c7:36:a4:
+        1a:6e:32:38:31:e7:4c:17:bf:65:01:54:b5:2f:96:87:32:cf:
+        c2:61:7d:cc:80:cc:6e:fc
+-----BEGIN CERTIFICATE-----
+MIIHojCCBYqgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBhjELMAkGA1UEBhMCVVMx
+EzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1NlYXR0bGUxEDAOBgNVBAoT
+B0RlbGxFTUMxFzAVBgNVBAMTDkRlbGxFTUMgU0UgTGFiMSUwIwYJKoZIhvcNAQkB
+FhZjcmFpZy5qLnNtaXRoQGRlbGwuY29tMB4XDTE4MDExNzE2MTMxN1oXDTI4MDEx
+NTE2MTMxN1owTTELMAkGA1UEBhMCVVMxEzARBgNVBAgMCldhc2hpbmd0b24xEDAO
+BgNVBAoMB0RlbGxFTUMxFzAVBgNVBAMMDnNlLmxhYi5lbWMuY29tMIICIjANBgkq
+hkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqizr9ZELVFVee93qHDS4GhqLy6OVUgjA
+GqoVpsfLBwFaC4C85tYDq9kNlAldjNcdCMSs2jutq3Nu44v1tyfUUuQ172dGO0v/
+Mt5D8UoOcTAuj+8bu230GlAfZG4LjQb7IRoWGoVTOQrjw3NWEcnDlsY2LaozfXTK
+DQVLE7yb+8UsiTxpj8bW7z4WDx4wwP+xIy+C6XQtQJHbukh+6EFxV5cm4abbE5wT
+RNejZ/Qfi4npg6dPI0dI1vivBYS+8AUIC4w9+LxUG0dqMFWiPA7aU4eU/BBmTrVP
+psjqoEjrwSnL0YUIoZSLfLCnn8L2Trw7NU5I+WEc+iVEDZ5Ii8s8XJyccu6TlhiU
+bgKZv+S71RLB2TjgqpCT0/P7z2pYQNfr6DaBV55c4/L53sNR8C86eS3K0Xfrb9Uo
+0cUjwwkCbqp1d1zV78h1gVR5uWKuPbYh280zrc3Y3ztozOuUEzkmu+J1LoniJ/8m
+PHh4BeildyYlhuDMu+/CXfwc0/y/0qOTkN/yg7eIS8gReZFx1bTmV99tjQKorQi9
+IUDvPng8ZAW+bMza2h39NlUNOHHT3R3vrzUmkCfiysPgqkJPcqr3tvdPfRvz2E3D
+p0VhHgj7LODz80IAifLzLh3oBWE8LAsIEKRn8axTGgkEMtaYsFrBx+cOZwgg6SvC
+4Sw53ouPhlsCAwEAAaOCAlEwggJNMAkGA1UdEwQCMAAwggIfBgNVHREEggIWMIIC
+EoIQKi5zZS5sYWIuZW1jLmNvbYIOc2UubGFiLmVtYy5jb22CGCoucGFjbGFicy5z
+ZS5sYWIuZW1jLmNvbYIWcGFjbGFicy5zZS5sYWIuZW1jLmNvbYIXKi5ub3JjYWwu
+c2UubGFiLmVtYy5jb22CFW5vcmNhbC5zZS5sYWIuZW1jLmNvbYIcKi5wY2YucGFj
+bGFicy5zZS5sYWIuZW1jLmNvbYIdKi5hcHBzLnBhY2xhYnMuc2UubGFiLmVtYy5j
+b22CGiouYmVsbGV2dWVsYWIuaXN1cy5lbWMuY29tghpwY2YucGFjbGFicy5zZS5s
+YWIuZW1jLmNvbYIbYXBwcy5wYWNsYWJzLnNlLmxhYi5lbWMuY29tgiIqLmxvZ2lu
+LnBjZi5wYWNsYWJzLnNlLmxhYi5lbWMuY29tgiAqLnVhYS5wY2YucGFjbGFicy5z
+ZS5sYWIuZW1jLmNvbYIbKi5wY2Yubm9yY2FsLnNlLmxhYi5lbWMuY29tghwqLmFw
+cHMubm9yY2FsLnNlLmxhYi5lbWMuY29tghlwY2Yubm9yY2FsLnNlLmxhYi5lbWMu
+Y29tghphcHBzLm5vcmNhbC5zZS5sYWIuZW1jLmNvbYIhKi5sb2dpbi5wY2Yubm9y
+Y2FsLnNlLmxhYi5lbWMuY29tgh8qLnVhYS5wY2Yubm9yY2FsLnNlLmxhYi5lbWMu
+Y29tMB0GA1UdDgQWBBS1s+Cw2azYraNhix12gl5rlWI4gTANBgkqhkiG9w0BAQsF
+AAOCAgEAKQrp0iSX5b0KG8o2F+E5jp8A7VpIE8uoDIWzJrJLIgl4BJ0JDeCrMOWV
+aDWWFbPCazEsN17jB2503KtCZxvgDXIooKLH/OcQjimyGKHHoQ1KLCSv+0bNVpj1
+RKRRmxmR13Agjmdgp9zvU3LLVeV7Xdb6HQsBKwpIf53Rom5LHNsyYtziRsdEXwN/
+/poR9K6KZXX2257J7rVwz7KY8mw7kVebSkwOpBrFBGf6vXt4TFLoncqfKLg6Jb6I
+D+TwNh+bzDXcGOJ7zsJoAWNy6oD+96UB01d2F3XVyreyhzmgzeqXbZdHNIQ8hfCV
+1yz9BQqCKdzFAxbAOAgsfckBYuQaU3lQhQyul54ayFDhsHujMxXuKRWncItfYTgK
+L1bNRLnAGbWXzBptx8/lr5EaG//qa3Ic3hVODqOWB0D8zH53W6ZMhlBZXvOxCNSD
+o0IyiMdKYNkARIS+Ki9aQbxp7elCao8aNfGxvXj7Er8M79ODlwNMi3JOkjw0wFc3
+NoV942QaYd21cRCyW6dp600l/hQPGrMiCvokhRM5awj1Xp5+9LGCdE3oEytQIjuU
+M/121qz6ii2jRarsVX0bCR0ERrQ3noTEP31Gb+x3O+WEVMjbHb73bSg6vvbInCiL
+1QWkWpUaZagXxzakGm4yODHnTBe/ZQFUtS+WhzLPwmF9zIDMbvw=
+-----END CERTIFICATE-----

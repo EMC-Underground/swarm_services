@@ -18,7 +18,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=9200"
-        - "traefik.frontend.rule=Host:elasticsearch.bluehairfreak.com"
+        - "traefik.frontend.rule=Host:elasticsearch.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 
@@ -37,7 +37,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=9600"
-        - "traefik.frontend.rule=Host:logstash.bluehairfreak.com"
+        - "traefik.frontend.rule=Host:logstash.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 
@@ -73,7 +73,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=5601"
-        - "traefik.frontend.rule=Host:logs.bluehairfreak.com"
+        - "traefik.frontend.rule=Host:logs.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 

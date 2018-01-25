@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  mongo:
+    image: mongo
+    networks:
+      - traefik-net
+      - default
+    volumes:
+      - mongo:/data/db
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.port=27017"
+        - "traefik.frontend.rule=Host:mongo.belleuvelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+
+volumes:
+  mongo:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+
+networks:
+  traefik-net:
+    external: true

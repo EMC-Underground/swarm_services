@@ -28,7 +28,7 @@ services:
         - "traefik.frontend.rule=PathPrefix:/ui,/system,/function"
         - "traefik.port=8080"
         - "traefik.enable=true"
-        - "traefik.frontend.rule=Host:functions.bluehairfreak.com"
+        - "traefik.frontend.rule=Host:functions.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
   nodeinfo:
     image: functions/nodeinfo:latest
