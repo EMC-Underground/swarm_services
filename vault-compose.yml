@@ -1,26 +1,21 @@
-version: '3.3'
+version: '3.4'
 
 services:
   vault:
     image: vault
-    cap-add:
-      - IPC_LOCK
     networks:
       - traefik-net
-      - default
     volumes:
       - vault:/vault/file
-    configs:
-      - source: vault_json
-        target: /vault/config/vault.json
-        mode: 444
+    environment:
+      - VAULT_LOCAL_CONFIG="{"backend": {"file": {"path": "/vault/file"}}, "listener": {"tcp": {"address": "0.0.0.0:8200", "tls_disable": 1}}, "default_lease_ttl": "168h", "max_lease_ttl": "720h"}"
     entrypoint:
       - vault server -config=/vault/config/vault.json
     deploy:
       replicas: 1
       labels:
         - "traefik.port=8200"
-        - "traefik.frontend.rule=Host:vault.bluehairfreak.com"
+        - "traefik.frontend.rule=Host:vault.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 
@@ -29,10 +24,6 @@ volumes:
     driver: rexray/scaleio
     driver_opts:
       size: 48
-
-configs:
-  vault_json:
-    file: ./vault.json
 
 networks:
   traefik-net:

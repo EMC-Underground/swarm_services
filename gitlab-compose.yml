@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  server:
+    image: gitlab/gitlab-ce:latest
+    networks:
+      - traefik-net
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.bellevuelab.isus.emc.com'
+    ports:
+      - 22:22
+    volumes:
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:gitlab.bellevuelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+networks:
+  traefik-net:
+    external: true
+
+volumes:
+  config:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 8
+  logs:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 30
+  data:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 100

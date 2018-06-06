@@ -20,21 +20,11 @@ services:
     networks:
       - consul-net
     environment:
-      - 'CONSUL_LOCAL_CONFIG={"leave_on_interrupt": true}'
+      - 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}'
     command: -server -join consul
     deploy:
       replicas: 2
       endpoint_mode: dnsrr
-
-  registrator:
-    image: gliderlabs/registrator
-    networks:
-      - consul-net
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-    command: consul://consul:8500
-    deploy:
-      mode: global
 
 networks:
   traefik-net:

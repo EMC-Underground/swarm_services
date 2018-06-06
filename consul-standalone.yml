@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  server:
+    image: consul
+    ports:
+      - 8500:8500
+    networks:
+      - consul-net
+      - traefik-net
+    deploy:
+      replicas: 1
+      labels:
+        - "cron=true"
+        - "cron.schedule=*/10 * * * *"
+        - "traefik.frontend.rule=Host:consul.bellevuelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+networks:
+  traefik-net:
+    external: true
+  consul-net:
+    external: true

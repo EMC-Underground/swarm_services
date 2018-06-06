@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  gogs-server:
+    image: gogs/gogs
+    networks:
+      - traefik-net
+    ports:
+      - 3000:3000
+    environment:
+       - "RUN_CROND=true"
+    deploy:
+      labels:
+        - "traefik.port=3000"
+        - "traefik.frontend.rule=Host:gogs.bellevuelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+networks:
+  traefik-net:
+    external: true

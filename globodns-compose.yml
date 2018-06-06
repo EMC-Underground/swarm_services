@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password#1
+    volumes:
+      - mysql:/var/lib/mysql
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    environment:
+      - DATA_SOURCE_NAME=exporter:TwerkAllNight@(db:3306)/
+    networks:
+      - default
+      - metrics-net
+
+networks:
+  metrics-net:
+    external: true
+
+volumes:
+  mysql:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 88

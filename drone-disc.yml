@@ -1,51 +1,40 @@
 version: '3.4'
 
 services:
-  server:
-    image: drone/drone:0.8.4
+  drone-server:
+    image: drone/drone
     networks:
-      - traefik-net
       - default
+      - traefik-net
+    ports:
+      - 8888:8000
     volumes:
-      - drone:/var/lib/drone/
+      - /Users/smithc40/drone:/var/lib/drone
     environment:
       - DRONE_OPEN=true
       - DRONE_DEBUG=true
-      - DRONE_HOST=http://drone.bellevuelab.isus.emc.com
+      - DRONE_HOST=http://locahost:8888
       - DRONE_GOGS=true
-      - DRONE_ADMIN=nctiggy
-      - DRONE_GOGS_URL=http://gogs.bellevuelab.isus.emc.com
+      - DRONE_ADMIN=nctiggy,yetiwilson
+      - DRONE_GOGS_URL=http://gogs-server:3000
       - DRONE_GOGS_SKIP_VERIFY=true
       - DRONE_SECRET=61C6082F-922B-4CCD-A1FA-701A49F1126D
     deploy:
       replicas: 1
-      endpoint_mode: dnsrr
       labels:
         - "traefik.port=8000"
         - "traefik.frontend.rule=Host:drone.bellevuelab.isus.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 
-  agent:
-    image: drone/agent:0.8.4
+  drone-agent:
+    image: drone/agent
     command: agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DRONE_SERVER=server:9000
+      - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=61C6082F-922B-4CCD-A1FA-701A49F1126D
-    deploy:
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - node.role != manager
-      mode: global
-
-volumes:
-  drone:
-    driver: rexray/scaleio
-    driver_opts:
-      size: 50gb
 
 networks:
   traefik-net:

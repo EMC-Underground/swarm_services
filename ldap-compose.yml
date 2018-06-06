@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+  ldap:
+    image: minkwe/389ds
+    environment:
+      DIR_HOSTNAME: ldap.paclabs.se.lab.emc.com
+      DIR_ADMIN_USERNAME: paclabs
+      DIR_ADMIN_PASSWORD: $DIR_PASSWORD
+      DIR_ADMIN_UID: "15000"
+      DIR_SUFFIX: dc=pac,dc=lab
+      DIR_USERS_HOME: "/users"
+    ports:
+      - 389:389
+      - 636:636
+    volumes:
+      - ldap_data:/var/lib/dirsrv
+      - ldap_config:/etc/dirsrv
+      - ldap_logs:/var/log/dirsrv
+      - ldap_certs:/certs
+
+volumes:
+  ldap_data:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 100
+  ldap_config:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 20
+  ldap_logs:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 50
+  ldap_certs:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 8

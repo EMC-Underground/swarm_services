@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  server:
+    image: gogs/gogs
+    networks:
+      - traefik-net
+    volumes:
+      - data:/data
+    environment:
+       - "RUN_CROND=true"
+    deploy:
+      labels:
+        - "traefik.port=3000"
+        - "traefik.frontend.rule=Host:gogs.bellevuelab.isus.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+volumes:
+  data:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 100gb
+
+networks:
+  traefik-net:
+    external: true

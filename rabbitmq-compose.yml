@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  server:
+    image: rabbitmq:3.7.4
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Password#1
+    networks:
+      - traefik-net
+      - default
+    deploy:
+      labels:
+        - "traefik.frontend.rule=Host:rabbit.container.se.lab.emc.com"
+        - "traefik.port=5672"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+networks:
+  traefik-net:
+    external: true

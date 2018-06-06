@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  portainer:
+  server:
     image: portainer/portainer
     networks:
       - traefik-net
@@ -15,15 +15,31 @@ services:
           - node.role == manager
       labels:
         - "traefik.port=9000"
-        - "traefik.frontend.rule=Host:manage.bellevuelab.isus.emc.com"
+        - "traefik.frontend.rule=Host:manage.container.se.lab.emc.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+  visualizer:
+    image: dockersamples/visualizer
+    networks:
+      - traefik-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.port=8080"
+        - "traefik.frontend.rule=Host:visualizer.container.se.lab.emc.com"
         - "traefik.docker.network=traefik-net"
         - "traefik.enable=true"
 
 volumes:
   portainer:
-    driver: rexray/scaleio
+    driver: vsphere
     driver_opts:
-      size: 50
+      size: 100gb
 
 networks:
   traefik-net:
