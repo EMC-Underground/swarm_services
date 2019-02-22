@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  proxy:
+    image: wavefronthq/proxy:latest
+    deploy:
+      endpoint_mode: dnsrr
+    environment:
+      - WAVEFRONT_URL=https://longboard.wavefront.com/api/
+      - JAVA_HEAP_USAGE=512m
+      - WAVEFRONT_TOKEN=469a56f0-1bfa-45a1-a6c5-0a2974663386
+  cadvisor:
+    image: google/cadvisor
+    hostname: '{{.Node.ID}}'
+    command: -logtostderr -docker_only -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=proxy:4242
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    dns: 127.0.0.11
+    deploy:
+      mode: global
+  

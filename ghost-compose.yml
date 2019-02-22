@@ -1,0 +1,44 @@
+version: '3.4'
+
+services:
+
+  ghost:
+    image: ghost:2-alpine
+    networks:
+      - traefik-net
+      - default
+    environment:
+      # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: P@ssw0rd
+      database__connection__database: ghost
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        - "traefik.port=2368"
+        - "traefik.frontend.rule=Host:ghost.bluehairfreak.com"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.enable=true"
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+    deploy:
+      restart_policy:
+        condition: any
+
+volumes:
+  db:
+    driver: rexray/scaleio
+    driver_opts:
+      size: 100gb
+
+networks:
+  traefik-net:
+    external: true

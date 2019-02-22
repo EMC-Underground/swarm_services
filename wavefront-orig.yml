@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  proxy:
+    image: wavefronthq/proxy:latest
+    environment:
+      - WAVEFRONT_URL=https://longboard.wavefront.com/api/
+      - JAVA_HEAP_USAGE=512m
+      - WAVEFRONT_TOKEN=469a56f0-1bfa-45a1-a6c5-0a2974663386
+  cadvisor:
+    image: wavefronthq/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    command: -storage_driver=wavefront -storage_driver_wf_source={{.Hostname}} -storage_driver_wf_proxy_host=proxy:2878
+    deploy:
+      mode: global
